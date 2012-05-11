@@ -1,24 +1,25 @@
-var widgets = new Meteor.Collection('widgets');
+var users = new Meteor.Collection('users');
 
-widgets.insert({
-  widgetName: 'widget1'
+users.insert({
+  firstName: 'Mario',
+  lastName: 'Lombardo'
 });
 
-Widget = function() {};
-Model.register('widgets', Widget);
+User = function() {};
+Model.register('users', User);
 
-Widget.prototype.modelMethod = function() { 
-  return this.widgetName;
+User.prototype.fullName = function() { 
+  return this.firstName + ' ' + this.lastName;
 };
 
 Tinytest.add("model-extensions", function (test) {
   // Works with find()
-  var widget = _.last(widgets.find().fetch());
-  var resultOfModelMethod = widget.modelMethod();
-  test.equal(resultOfModelMethod, 'widget1');
+  var user = _.last(users.find().fetch());
+  var fullName = user.fullName();
+  test.equal(fullName, 'Mario Lombardo');
 
   // Works with findOne()
-  var widget = widgets.findOne();
-  var resultOfModelMethod = widget.modelMethod();
-  test.equal(resultOfModelMethod, 'widget1');
+  var user = users.findOne();
+  var fullName = user.fullName();
+  test.equal(fullName, 'Mario Lombardo');
 });
