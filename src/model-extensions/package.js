@@ -1,5 +1,5 @@
 Package.describe({
-  summary: "A lib for adding behavior to Meteor's Mongo models"
+  summary: "A dead simple way to add behavior to objects retrieved from Mongo by Meteor"
 });
 
 Package.on_use(function (api) {
